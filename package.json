@@ -10,7 +10,6 @@
     "eslint": "eslint . --ext .tsx --fix",
     "purge": "yarn cache clean",
     "postinstall": "husky install",
-    "postbuild": "sh -e scripts/postBuild.sh",
     "pre-commit": "lint-staged",
     "pre-push": "tsc",
     "analyze": "ANALYZE=true next build && next export",
