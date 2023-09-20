@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import campaignsData from './campaignsResponse.json'
 import { isNotNil } from 'ramda'
-import { CampaignData, responseData } from '../types'
+import { CampaignData, responseData } from '../../types'
 
 const getCampaigns = (
   req: NextApiRequest,

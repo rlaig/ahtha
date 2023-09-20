@@ -15,8 +15,8 @@ import {
   Button,
   Form,
 } from 'react-bootstrap';
-import { CampaignData, responseData } from './types';
-import { CampaignCard } from './components/CampaignCard';
+import { CampaignData, responseData } from '../types';
+import { CampaignCard } from '../components/CampaignCard';
 
 const Home: React.FC = () => {
   const [page, setPage] = useState<number>(1);
