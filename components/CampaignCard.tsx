@@ -7,7 +7,7 @@ import {
   OverlayTrigger,
   Popover,
 } from 'react-bootstrap'
-import style from '../../styles/campaignCard.module.scss'
+import style from '../styles/campaignCard.module.scss'
 
 type Props = {
   campaign: CampaignData
