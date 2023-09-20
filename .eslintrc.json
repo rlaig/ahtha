@@ -11,8 +11,7 @@
     "plugin:import/recommended",
     "plugin:import/typescript",
     "@spotify/eslint-config-base",
-    "@spotify/eslint-config-react",
-    "next/core-web-vitals"
+    "@spotify/eslint-config-react"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -24,6 +23,9 @@
   },
   "plugins": ["react", "@typescript-eslint", "jsx-a11y"],
   "rules": {
+    "semi": "off",
+    "comma-dangle": "off",
+    "indent": "off",
     // "fp/no-mutation": "warn",
     "arrow-body-style": "warn",
     "import/newline-after-import": [
