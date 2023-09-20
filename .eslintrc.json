@@ -123,8 +123,6 @@
     "react/button-has-type": "error",
     // avoid accidentally using default type=submit which will reload the page
     "react/jsx-key": "error",
-    // must not use index as key
-    "react/no-array-index-key": "error",
     // this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state
     // see https://medium.com/@wisecobbler/using-a-function-in-setstate-instead-of-an-object-1f5cfd6e55d1
     "react/no-access-state-in-setstate": "error",

@@ -1,0 +1,52 @@
+.card {
+  min-height: 450px;
+}
+
+@mixin bg-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.cardHeaderBanner {
+  @include bg-image;
+  background-size: cover;
+  min-height: 160px;
+  position: relative;
+  text-align: center;
+}
+.cardHeaderLogo {
+  @include bg-image;
+  background-size: contain;
+  background-color: #fff;
+  min-height: 100px;
+  width: 100px;
+  position: relative;
+  bottom: -90px;
+}
+.cardDescription {
+  font-size: 11px;
+  min-height: 40px;
+}
+.cardRaised {
+  font-size: 10px;
+}
+.cardProgressBar{
+  font-size: 9px;
+}
+.cardTags {
+  margin-top: 0px;
+  min-height: 100px;
+  .cardTag{
+    font-size: 9px;
+    display: inline-block;
+    margin: 0px 4px;
+    color: #444;
+    &:visited {
+      color: #444;
+    }
+  }
+  .cardTagText{
+    font-size: 12px;
+    font-weight: 800;
+  }
+}
