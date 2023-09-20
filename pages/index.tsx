@@ -1,10 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import style from '../styles/custom.module.scss'
-import Head from 'next/head'
-import React, { useState, useEffect, useCallback } from 'react'
-import { Formik } from 'formik'
-import useSWR, { Fetcher } from 'swr'
-import { isNotNil } from 'ramda'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import style from '../styles/custom.module.scss';
+import Head from 'next/head';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Formik } from 'formik';
+import useSWR, { Fetcher } from 'swr';
+import { isNotNil } from 'ramda';
 import {
   Container,
   Row,
@@ -14,14 +14,14 @@ import {
   InputGroup,
   Button,
   Form,
-} from 'react-bootstrap'
-import { CampaignData, responseData } from './types'
-import { CampaignCard } from './components/CampaignCard'
+} from 'react-bootstrap';
+import { CampaignData, responseData } from './types';
+import { CampaignCard } from './components/CampaignCard';
 
 const Home: React.FC = () => {
-  const [page, setPage] = useState<number>(1)
-  const [size, setSize] = useState<number>(4)
-  const [search, setSearch] = useState<string>('')
+  const [page, setPage] = useState<number>(1);
+  const [size, setSize] = useState<number>(4);
+  const [search, setSearch] = useState<string>('');
 
   const getCampaigns: Fetcher<
     responseData<CampaignData[]>,
@@ -37,10 +37,10 @@ const Home: React.FC = () => {
     sizeParam: number
     searchParam: string
   }) => {
-    const query = `?page=${pageParam}&size=${sizeParam}&search=${searchParam}`
+    const query = `?page=${pageParam}&size=${sizeParam}&search=${searchParam}`;
 
-    return fetch(url + query).then((res) => res.json())
-  }
+    return fetch(url + query).then((res) => res.json());
+  };
 
   const { data, isLoading } = useSWR(
     {
@@ -49,44 +49,44 @@ const Home: React.FC = () => {
       sizeParam: size,
       searchParam: search,
     },
-    getCampaigns
-  )
+    getCampaigns,
+  );
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const searchParam = urlParams.get('search')
-    const pageParam = urlParams.get('page')
-    const sizeParam = urlParams.get('size')
-    if (isNotNil(pageParam)) setPage(Number(pageParam))
-    if (isNotNil(sizeParam)) setSize(Number(sizeParam))
-    if (isNotNil(searchParam)) setSearch(searchParam)
-  }, [setPage, setSize, setSearch])
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search');
+    const pageParam = urlParams.get('page');
+    const sizeParam = urlParams.get('size');
+    if (isNotNil(pageParam)) setPage(Number(pageParam));
+    if (isNotNil(sizeParam)) setSize(Number(sizeParam));
+    if (isNotNil(searchParam)) setSearch(searchParam);
+  }, [setPage, setSize, setSearch]);
 
   const navigatePage = useCallback(
     (pageNumber: number) => {
-      setPage(pageNumber)
+      setPage(pageNumber);
       window.history.pushState(
         {},
         '',
-        `?page=${pageNumber}&size=${size}${search ? `&search=${search}` : ''}`
-      )
+        `?page=${pageNumber}&size=${size}${search ? `&search=${search}` : ''}`,
+      );
     },
-    [setPage, search, size]
-  )
+    [setPage, search, size],
+  );
 
   const handleSearch = useCallback(
     (searchQuery: string) => {
-      setSearch(searchQuery)
-      setPage(1)
-      setSize(4)
+      setSearch(searchQuery);
+      setPage(1);
+      setSize(4);
       window.history.pushState(
         {},
         '',
-        `?page=1&size=4${searchQuery ? `&search=${searchQuery}` : ''}`
-      )
+        `?page=1&size=4${searchQuery ? `&search=${searchQuery}` : ''}`,
+      );
     },
-    [setSearch, setPage, setSize]
-  )
+    [setSearch, setPage, setSize],
+  );
 
   return (
     <>
@@ -103,8 +103,8 @@ const Home: React.FC = () => {
               enableReinitialize
               initialValues={{ searchField: search }}
               onSubmit={(values, { setSubmitting }) => {
-                handleSearch(values.searchField)
-                setSubmitting(false)
+                handleSearch(values.searchField);
+                setSubmitting(false);
               }}
             >
               {({ values, handleSubmit, handleChange, isSubmitting }) => (
@@ -144,7 +144,7 @@ const Home: React.FC = () => {
           ) : (
             <Col
               xs="auto"
-              className={`d-flex align-items-center ${style.card}`}
+              className={`d-flex align-items-center ${style.loading}`}
             >
               <Spinner animation="border" />
             </Col>
@@ -156,7 +156,7 @@ const Home: React.FC = () => {
             <Pagination>
               <Pagination.Prev
                 onClick={() => {
-                  navigatePage(page - 1)
+                  navigatePage(page - 1);
                 }}
                 disabled={page === 1}
               />
@@ -170,7 +170,7 @@ const Home: React.FC = () => {
                     >
                       <span className={style.paginationItems}>{item + 1}</span>
                     </Pagination.Item>
-                  )
+                  ),
                 )}
               <Pagination.Next
                 onClick={() => navigatePage(page + 1)}
@@ -181,7 +181,7 @@ const Home: React.FC = () => {
         </Row>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
